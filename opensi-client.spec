@@ -16,6 +16,7 @@ Source0:	%{name}-%{version}.tar.bz2
 License:	GPL
 Group:		Office
 Url:		http://opensi.org/
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	mozilla-firefox
 Requires(pre):	mozilla-firefox = %{firefox_version}
 Requires:	libopensi
