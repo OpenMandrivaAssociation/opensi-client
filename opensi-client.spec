@@ -40,14 +40,15 @@ cat << EOF > %{buildroot}%{mozillalibdir}/chrome/rc.d/10_%{oname}.txt
 content,install,url,resource:/chrome/opensi/content/opensi/
 EOF
 
-install -d %{buildroot}%{_menudir}
-cat <<EOF > %{buildroot}%{_menudir}/%{name}
-?package(%{name}):command="mozilla-firefox -chrome chrome://opensi/content/login.xul" \
-                icon="finances_section.png" \
-                needs="x11" \
-                section="More Applications/Finances" \
-                title="OpenSi"\
-                longtitle="%{Summary}"
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
+[Desktop Entry]
+Type=Application
+Exec=mozilla-firefox -chrome chrome://opensi/content/login.xul
+Icon=finances_section
+Categories=Office;Finance;
+Name=OpenSi
+Comment=%{Summary}
 EOF
 
 
@@ -66,5 +67,5 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{mozillalibdir}/chrome/%{oname}
 %{mozillalibdir}/chrome/rc.d/10_%{oname}.txt
-%{_menudir}/%{name}
+%{_datadir}/applications/mandriva-%{name}.desktop
 
