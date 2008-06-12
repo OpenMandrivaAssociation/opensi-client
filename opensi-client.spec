@@ -54,11 +54,15 @@ EOF
 
 %post
 if test -x %{mozillalibdir}/mozilla-rebuild-databases.pl; then %{mozillalibdir}/mozilla-rebuild-databases.pl; fi
+%if %mdkversion < 200900
 %update_menus
+%endif
 
 %postun
 if test -x %{mozillalibdir}/mozilla-rebuild-databases.pl; then %{mozillalibdir}/mozilla-rebuild-databases.pl; fi
+%if %mdkversion < 200900
 %clean_menus
+%endif
 
 %clean
 rm -rf %{buildroot}
