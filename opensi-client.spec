@@ -3,8 +3,8 @@
 %define version	2.0.7
 %define release 3
 #(peroyvind): yes, doing this twice is done on purpose to work around weird issue..
-%{expand:%%define firefox_version %(mozilla-firefox-config --version)}
-%{expand:%%define firefox_version %(mozilla-firefox-config --version)}
+%define firefox_version %(rpm -q mozilla-firefox --queryformat %{VERSION})
+%define firefox_epoch %(rpm -q mozilla-firefox --queryformat %{EPOCH})
 %define mozillalibdir %{_libdir}/mozilla-firefox-%{firefox_version}
 %define	Summary	OpenSi client
 
@@ -18,7 +18,7 @@ Group:		Office
 Url:		http://opensi.org/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	mozilla-firefox
-Requires(pre):	mozilla-firefox = %{firefox_version}
+Requires(pre):	mozilla-firefox = %{firefox_epoch}:%{firefox_version}
 Requires:	libopensi
 
 %description
