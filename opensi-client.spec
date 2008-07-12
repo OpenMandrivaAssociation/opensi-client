@@ -1,8 +1,6 @@
 %define	oname	opensi
 %define name	%{oname}-client
-%define version	2.0.7
-%define release 3
-#(peroyvind): yes, doing this twice is done on purpose to work around weird issue..
+%define version	3.4
 %define firefox_version %(rpm -q mozilla-firefox --queryformat %{VERSION})
 %define firefox_epoch %(rpm -q mozilla-firefox --queryformat %{EPOCH})
 %define mozillalibdir %{_libdir}/mozilla-firefox-%{firefox_version}
@@ -11,8 +9,8 @@
 Summary:	%{Summary}
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel %{release}
-Source0:	%{name}-%{version}.tar.bz2
+Release:	%mkrel 1
+Source0:	http://download.gna.org/opensi/opensi-client/3.4/%name-%version.tgz
 License:	GPL
 Group:		Office
 Url:		http://opensi.org/
