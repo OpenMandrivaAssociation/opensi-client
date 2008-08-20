@@ -1,17 +1,17 @@
 %define	oname	opensi
 %define name	%{oname}-client
 %define version	3.4
-%define firefox_version %(rpm -q mozilla-firefox --queryformat %{VERSION})
-%define firefox_epoch %(rpm -q mozilla-firefox --queryformat %{EPOCH})
-%define mozillalibdir %{_libdir}/mozilla-firefox-%{firefox_version}
+%define firefox_version %(rpm -q --whatprovides mozilla-firefox --queryformat %{VERSION})
+%define firefox_epoch %(rpm -q --whatprovides mozilla-firefox --queryformat %{EPOCH})
+%define mozillalibdir %{_libdir}/firefox-%{firefox_version}
 %define	Summary	OpenSi client
 
 Summary:	%{Summary}
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 2
+Release:	%mkrel 3
 Source0:	http://download.gna.org/opensi/opensi-client/3.4/%name-%version.tgz
-License:	GPL
+License:	GPLv2+
 Group:		Office
 Url:		http://opensi.org/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
