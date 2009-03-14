@@ -9,7 +9,7 @@
 Summary:	%{Summary}
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 7
+Release:	%mkrel 8
 Source0:	http://download.gna.org/opensi/opensi-client/3.4/%name-%version.tgz
 License:	GPLv2+
 Group:		Office
