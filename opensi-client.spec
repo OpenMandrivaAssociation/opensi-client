@@ -9,14 +9,14 @@
 Summary:	%{Summary}
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 12
+Release:	%mkrel 13
 Source0:	http://download.gna.org/opensi/opensi-client/3.4/%name-%version.tgz
 License:	GPLv2+
 Group:		Office
 Url:		http://opensi.org/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	mozilla-firefox
-Requires(pre):	mozilla-firefox = %{firefox_epoch}:%{firefox_version}
+Requires:	firefox = %{firefox_epoch}:%{firefox_version}
 Requires:	libopensi
 
 %description
@@ -42,25 +42,12 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
 cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Type=Application
-Exec=mozilla-firefox -chrome chrome://opensi/content/login.xul
+Exec=firefox -chrome chrome://opensi/content/login.xul
 Icon=finances_section
 Categories=Office;Finance;
 Name=OpenSi
 Comment=%{Summary}
 EOF
-
-
-%post
-if test -x %{mozillalibdir}/mozilla-rebuild-databases.pl; then %{mozillalibdir}/mozilla-rebuild-databases.pl; fi
-%if %mdkversion < 200900
-%update_menus
-%endif
-
-%postun
-if test -x %{mozillalibdir}/mozilla-rebuild-databases.pl; then %{mozillalibdir}/mozilla-rebuild-databases.pl; fi
-%if %mdkversion < 200900
-%clean_menus
-%endif
 
 %clean
 rm -rf %{buildroot}
