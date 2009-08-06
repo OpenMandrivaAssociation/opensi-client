@@ -1,8 +1,8 @@
 %define	oname	opensi
 %define name	%{oname}-client
 %define version	3.4
-%define firefox_version %(rpm -q --whatprovides mozilla-firefox --queryformat %{VERSION})
-%define firefox_epoch %(rpm -q --whatprovides mozilla-firefox --queryformat %{EPOCH})
+%define firefox_version %(rpm -q --whatprovides firefox --queryformat %{VERSION})
+%define firefox_epoch %(rpm -q --whatprovides firefox --queryformat %{EPOCH})
 %define mozillalibdir %{_libdir}/firefox-%{firefox_version}
 %define	Summary	OpenSi client
 
