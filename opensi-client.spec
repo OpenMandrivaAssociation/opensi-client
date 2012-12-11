@@ -1,19 +1,18 @@
-%define	oname	opensi
-%define name	%{oname}-client
-%define version	3.4
-%define	Summary	OpenSi client
+%define _enable_debug_packages %{nil}
+%define debug_package %{nil}
 
-Summary:	%{Summary}
-Name:		%{name}
-Version:	%{version}
-Release:	%mkrel 17
-Source0:	http://download.gna.org/opensi/opensi-client/3.4/%name-%version.tgz
+%define	oname	opensi
+
+Summary:	OpenSi client
+Name:		%{oname}-client
+Version:	3.4
+Release:	18
 License:	GPLv2+
 Group:		Office
 Url:		http://opensi.org/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Source0:	http://download.gna.org/opensi/opensi-client/3.4/%{name}-%{version}.tgz
 BuildRequires:	firefox-devel
-Requires:	firefox = %{firefox_epoch}:%{firefox_version}
+Requires:	firefox >= %{firefox_epoch}:%{firefox_version}
 Requires:	libopensi
 
 %description
@@ -25,7 +24,6 @@ Client for OpenSi.
 %build
 
 %install
-rm -rf %{buildroot}
 # Jar for the translation
 mkdir -p %{buildroot}%{firefox_mozillapath}/chrome/
 cp -r `pwd`  %{buildroot}%{firefox_mozillapath}/chrome/
@@ -35,7 +33,7 @@ cat << EOF > %{buildroot}%{firefox_mozillapath}/chrome/rc.d/10_%{oname}.txt
 content,install,url,resource:/chrome/opensi/content/opensi/
 EOF
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+mkdir -p %{buildroot}%{_datadir}/applications/
 cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Type=Application
@@ -43,14 +41,10 @@ Exec=firefox -chrome chrome://opensi/content/login.xul
 Icon=finances_section
 Categories=Office;Finance;
 Name=OpenSi
-Comment=%{Summary}
+Comment=OpenSi client
 EOF
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %{firefox_mozillapath}/chrome/%{oname}
 %{firefox_mozillapath}/chrome/rc.d/10_%{oname}.txt
 %{_datadir}/applications/mandriva-%{name}.desktop
