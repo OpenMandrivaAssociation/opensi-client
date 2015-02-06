@@ -6,7 +6,7 @@
 Summary:	OpenSi client
 Name:		%{oname}-client
 Version:	3.4
-Release:	18
+Release:	19
 License:	GPLv2+
 Group:		Office
 Url:		http://opensi.org/
