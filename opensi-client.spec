@@ -9,7 +9,7 @@ Version:	3.4
 Release:	19
 License:	GPLv2+
 Group:		Office
-Url:		http://opensi.org/
+Url:		https://opensi.org/
 Source0:	http://download.gna.org/opensi/opensi-client/3.4/%{name}-%{version}.tgz
 BuildRequires:	firefox-devel
 Requires:	firefox >= %{firefox_epoch}:%{firefox_version}
